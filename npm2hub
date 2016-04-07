@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Usage: npm2hub <package-specifier>
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+FULL_NAME=$1
+
+if [[ -z "$FULL_NAME" ]]; then
+  echo please provide a package name to build >&2
+  exit 1
+fi
+
+BUILD_DIR=$(mktemp -d)
+PACKAGE_NAME=$(npm view $FULL_NAME name)
+PACKAGE_VERSION=$(npm view $FULL_NAME version)
+
+cd $BUILD_DIR
+npm install --production ${PACKAGE_NAME}@${PACKAGE_VERSION}
+cp $DIR/generic.dockerfile node_modules/$PACKAGE_NAME/Dockerfile
+cd node_modules/$PACKAGE_NAME
+npm dedupe
+docker build -t $PACKAGE_NAME:$PACKAGE_VERSION .
+
+rm -rf $BUILD_DIR
