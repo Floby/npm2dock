@@ -9,7 +9,7 @@ Usage
     $ npm2dock micro-sleep
 
 Downloads the latest stable version (npm install behaviour) of the `micro-sleep`
-package and create a docker image named `micro-sleep` with a tag corresponding
+package and creates a docker image named `micro-sleep` with a tag corresponding
 to the version of the resolved package.
 
     $ npm2dock micro-sleep@1.0.1
