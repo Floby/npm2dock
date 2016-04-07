@@ -17,15 +17,22 @@ to the version of the resolved package.
 Does the same thing but resolves to the `1.0.1` version of the package (npm install behaviour)
 This then generates the `micro-sleep:1.0.1` image on your docker.
 
+### Run it
+
+Once you've generated your images, they can be run anywhere like this for example
+
+    $ docker run -d -p 3000:3000 micro-sleep:1.0.0
+
 Conventions
 -----------
 
-`npm2dock` makes 4 main assumptions about the structure of the packages it pulls from npm:
+`npm2dock` makes 3 main assumptions about the structure of the packages it pulls from npm:
 
 + it has an [`npm start`](https://docs.npmjs.com/cli/start) script configured
 + it starts a server on at least one of these ports: 3000 8000 8080 8443
 + it only needs a node.js runtime to run.
-+ it is configurable via ENV variables
+
+Additionnally it is strongly recommended that configuration is made via [ENV variables](http://12factor.net/config)
 
 If the package you want to run follows these, then life will be a breeze anyway.
 
