@@ -29,7 +29,7 @@ Conventions
 `npm2dock` makes 3 main assumptions about the structure of the packages it pulls from npm:
 
 + it has an [`npm start`](https://docs.npmjs.com/cli/start) script configured
-+ it starts a server on at least one of these ports: 3000 8000 8080 8443
++ it starts a server on at least one of these ports: 3000 8000 8080 8443 (or on the PORT environment variable)
 + it only needs a node.js runtime to run.
 
 Additionnally it is strongly recommended that configuration is made via [ENV variables](http://12factor.net/config)
